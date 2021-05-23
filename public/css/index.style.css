@@ -1,0 +1,51 @@
+#container-principal {
+    height: 100vh;
+}
+
+#ligne-en-tete {
+    min-height: 10%;
+    border-bottom: 1px solid lightgrey;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(41, 72, 125);
+}
+
+#texte-categories {
+    color: ghostwhite;
+    font-weight: bold;
+}
+
+#ligne-corps {
+    min-height: 90%;
+}
+
+#menu-categories {
+    padding: 0;
+    border-right: 1px solid lightgrey;
+}
+
+#bloc-infos {
+    overflow-x: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-group-item {
+    min-height: 45px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.custom-group-item:hover {
+    background-color: rgb(131, 170, 241);
+    cursor: pointer;
+}
+
+.categorie-selectionnee {
+    background-color: rgb(80, 120, 190);
+}

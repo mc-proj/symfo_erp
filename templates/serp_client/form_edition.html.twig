@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_client/form_edition.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-edition-client'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-edition-client" formnovalidate>Modifier un client</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_client/form_edition.script.js')}}"></script>
+<script>
+  let route_post_edite_client = '{{ path("edite_client") }}';
+</script>

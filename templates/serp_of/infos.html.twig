@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="{{ asset('css/serp_of/info.style.css') }}">
+
+<div class="modal modal-xl fade" id="modale-formulaire-of" tabindex="-1" aria-labelledby="titre-modale-of" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-of">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-of">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Nom client</th>
+            <th scope="col">Quantité commandée</th>
+            <th scope="col">Date commande</th>
+            <th scope="col">Machine associée</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+
+        {% if ofs|length < 1 %}
+            <tr class="row-of">
+                <td colspan="7">Aucun of disponible</td>
+            </tr>
+        {% else %}
+            {% for of in ofs %}
+                <tr class="row-of">
+                    <td>{{ of.getIdClient.nom }}</td>
+                    <td>{{ of.getQuantiteCommandee }}</td>
+                    <td>{{ of.getDateCommande|date("d/m/Y") }}</td>
+                    <td>{{ of.getMachineId.nom }}</td>
+                    <td>
+                        <button class="btn btn-primary edite-of" data-id="{{ of.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-of" data-id="{{ of.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr id="tr-valide">
+            <td colspan="7">
+                <button class="btn btn-primary" id="cree-of">Créer un nouvel ordre de fabrication</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_of/info.script.js')}}"></script>
+<script>
+    let route_get_of = '{{ path("cree_of") }}';
+    let route_get_edite_of = '{{ path("edite_of") }}';
+    let route_efface_of = '{{ path("efface_of") }}';
+</script>

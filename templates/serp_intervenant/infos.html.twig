@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="{{ asset('css/serp_intervenant/info.style.css') }}">
+
+<div class="modal modal-xl fade" id="modale-formulaire-intervenant" tabindex="-1" aria-labelledby="titre-modale-intervenant" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-intervenant">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-intervenant">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Type d'intervenant</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+        {% if intervenants|length < 1 %}
+            <tr class="row-intervenant">
+                <td colspan="7">Aucun intervenant disponible</td>
+            </tr>
+        {% else %}
+            {% for intervenant in intervenants %}
+                <tr class="row-intervenant">
+                    <td>{{ intervenant.nom }}</td>
+                    <td>{{ intervenant.prenom }}</td>
+                    <td>{{ intervenant.getIdTypeIntervenant.intitule }}</td>
+                    <td>
+                        <button class="btn btn-primary edite-intervenant" data-id="{{ intervenant.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-intervenant" data-id="{{ intervenant.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr id="tr-valide">
+            <td colspan="7">
+                <button class="btn btn-primary" id="cree-intervenant">Créer un nouvel intervenant</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_intervenant/info.script.js')}}"></script>
+<script>
+    let route_get_intervenant = '{{ path("cree_intervenant") }}';
+    let route_get_edite_intervenant = '{{ path("edite_intervenant") }}';
+    let route_efface_intervenant = '{{ path("efface_intervenant") }}';
+</script>

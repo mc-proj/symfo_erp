@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_intervention/form_nouveau.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-cree-intervention'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-cree-intervention" formnovalidate>Créer nouvelle intervention</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_intervention/form_nouveau.script.js')}}"></script>
+<script>
+  let route_post_intervention= '{{ path("cree_intervention") }}';
+</script>

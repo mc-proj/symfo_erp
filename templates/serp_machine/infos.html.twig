@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="{{ asset('css/serp_machine/info.style.css') }}">
+
+<div class="modal modal-xl fade" id="modale-formulaire-machine" tabindex="-1" aria-labelledby="titre-modale-machine" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-machine">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-machine">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+        {% if machines|length < 1 %}
+            <tr class="row-machine">
+                <td colspan="7">Aucune machine disponible</td>
+            </tr>
+        {% else %}
+            {% for machine in machines %}
+                <tr class="row-machine">
+                    <td>{{ machine.nom }}</td>
+                    <td>
+                        <button class="btn btn-primary edite-machine" data-id="{{ machine.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-machine" data-id="{{ machine.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr id="tr-valide">
+            <td colspan="7">
+                <button class="btn btn-primary" id="cree-machine">Créer une nouvelle machine</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_machine/info.script.js')}}"></script>
+<script>
+    let route_get_machine = '{{ path("cree_machine") }}';
+    let route_get_edite_machine = '{{ path("edite_machine") }}';
+    let route_efface_machine = '{{ path("efface_machine") }}';
+</script>

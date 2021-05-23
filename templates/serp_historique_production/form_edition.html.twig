@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_historique_production/form_edition.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-edition-historique'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-edition-historique" formnovalidate>Modifier un historique</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_historique_production/form_edition.script.js')}}"></script>
+<script>
+  let route_post_edite_historique = '{{ path("edite_historique") }}';
+</script>

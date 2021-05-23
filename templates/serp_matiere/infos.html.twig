@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="{{ asset('css/serp_matiere/info.style.css') }}">
+
+<div class="modal modal-xl fade" id="modale-formulaire-matiere" tabindex="-1" aria-labelledby="titre-modale-matiere" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-matiere">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-matiere">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Quantité en stock</th>
+            <th scope="col">Limite basse stock</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+        {% if matieres|length < 1 %}
+            <tr class="row-matiere">
+                <td colspan="6">Aucune matière disponible</td>
+            </tr>
+        {% else %}
+            {% for matiere in matieres %}
+                <tr class="row-matiere">
+                    <td>{{ matiere.getNom() }}</td>
+                    <td>{{ (matiere.getPrix()/100)|number_format(2, ',', ' ') }}</td>
+                    <td>{{ matiere.getQuantiteStock() }}</td>
+                    <td>{{ matiere.getLimiteBasseStock() }}</td>
+                    <td>
+                        <button class="btn btn-primary edite-matiere" data-id="{{ matiere.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-matiere" data-id="{{ matiere.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr id="tr-valide">
+            <td colspan="6">
+                <button class="btn btn-primary" id="cree-matiere">Créer une nouvelle matiere</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_matiere/info.script.js')}}"></script>
+<script>
+    let route_get_matiere = '{{ path("cree_matiere") }}';
+    let route_get_edite_matiere = '{{ path("edite_matiere") }}';
+    let route_efface_matiere = '{{ path("efface_matiere") }}';
+</script>

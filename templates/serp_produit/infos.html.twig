@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="{{ asset('css/serp_produit/info.style.css') }}">
+
+<div class="modal modal-xl fade" id="modale-formulaire-produit" tabindex="-1" aria-labelledby="titre-modale-produit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-produit">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-produit">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="menu-lateral">
+    <div class="container-fluid" id="container-matieres">
+        <div class="row" id="row-matieres">
+            <h2 class="col-10" id="nom-produit-matieres"></h2>
+            <div class="col-2">
+                <button type="button" class="btn btn-outline-dark" id="bouton-fermeture-lateral">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row" id="row-menu-lateral">
+            <div class="col-12" id="col-menu-lateral">
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+        {% if produits|length < 1 %}
+            <tr class="row-produit">
+                <td colspan="7">Aucun produit disponible</td>
+            </tr>
+        {% else %}
+            {% for produit in produits %}
+                <tr class="row-produit">
+                    <td>{{ produit.nom }}</td>
+                    <td>
+                        <button class="btn btn-primary bouton-matiere" data-id="{{ produit.id }}">Matières</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary edite-produit" data-id="{{ produit.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-produit" data-id="{{ produit.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}        
+        <tr id="tr-valide">
+            <td colspan="4">
+                <button class="btn btn-primary" id="cree-produit">Créer un nouveau produit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_produit/info.script.js')}}"></script>
+<script>
+    let route_get_produit = '{{ path("cree_produit") }}';
+    let route_get_edite_produit = '{{ path("edite_produit") }}';
+    let route_efface_produit = '{{ path("efface_produit") }}';
+    let route_info_matieres = '{{ path("info_matiere_produit") }}';
+</script>

@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="{{ asset('css/serp_controle_qualite/info.style.css') }}">
+
+<div class="modal modal-xl fade" id="modale-formulaire-qualite" tabindex="-1" aria-labelledby="titre-modale-qualite" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-qualite">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-qualite">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Référence Ordre Fabrication</th>
+            <th scope="col">Nom du controleur</th>
+            <th scope="col">Quantité controlée</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+        {% if qualites|length < 1 %}
+            <tr class="row-qualite">
+                <td colspan="7">Aucun controle qualité disponible</td>
+            </tr>
+        {% else %}
+            {% for qualite in qualites %}
+                <tr class="row-qualite">
+                    <td>{{ qualite.date|date("d/m/Y H:i") }}</td>
+                    <td>{{ qualite.getOfId.id }}</td>
+                    <td>{{ qualite.getIdIntervenant.nom }} {{ qualite.getIdIntervenant.prenom }}</td>
+                    <td>{{ qualite.quantiteControlee }}</td>
+                    <td>
+                        <button class="btn btn-primary edite-qualite" data-id="{{ qualite.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-qualite" data-id="{{ qualite.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr id="tr-valide">
+            <td colspan="7">
+                <button class="btn btn-primary" id="cree-qualite">Créer un nouveau controle qualité</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_controle_qualite/info.script.js')}}"></script>
+<script>
+    let route_get_qualite = '{{ path("cree_qualite") }}';
+    let route_get_edite_qualite = '{{ path("edite_qualite") }}';
+    let route_efface_qualite = '{{ path("efface_qualite") }}';
+</script>

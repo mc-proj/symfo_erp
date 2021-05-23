@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_matiere_produit/form_edition.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-edition-matiere-produit'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-edition-matiere-produit" formnovalidate>Modifier une matière liée</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_matiere_produit/form_edition.script.js')}}"></script>
+<script>
+  let route_post_edite_matiere_produit = '{{ path("edite_matiere_liee") }}';
+</script>

@@ -1,0 +1,58 @@
+<div class="modal modal-xl fade" id="modale-formulaire-matiere_liee" tabindex="-1" aria-labelledby="titre-modale-matiere_liee" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-matiere_liee">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-matiere_liee">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nom matière</th>
+            <th scope="col">Quantité matière</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info">
+        {% for matiere_produit in matieres_produits %}
+            <tr class="row-produit">
+                <td>{{ matiere_produit.getIdMatiere.getNom }}</td>
+                <td>
+                    {{ matiere_produit.getQuantiteMatiere }}
+                </td>
+                <td>
+                    <button class="btn btn-primary edite-matiere-produit" data-id="{{ matiere_produit.id }}">Editer</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger efface-matiere-produit" data-id="{{ matiere_produit.id }}">Effacer</button>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr id="tr-valide">
+            <td colspan="4">
+                <button class="btn btn-primary" id="ajoute-matiere-produit">Ajouter une matière</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="{{asset('js/serp_produit/infos_matiere.script.js')}}"></script>
+<script>
+    let route_nouvelle_matiere = '{{ path("lie_nouvelle_matiere") }}';
+    let route_edite_matiere = '{{ path("edite_matiere_liee") }}';
+    let route_supprime_matiere = '{{ path("supprime_matiere_liee") }}';
+    let id_produit = '{{ id_produit }}';
+</script>

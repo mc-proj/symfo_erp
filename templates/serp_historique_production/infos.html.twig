@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="{{ asset('css/serp_historique_production/info.style.css') }}">
+
+<div class="modal modal-xl fade" id="modale-formulaire-historique" tabindex="-1" aria-labelledby="titre-modale-historique" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-historique">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-historique">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Référence OF associé</td>
+            <th scope="col">Début</th>
+            <th scope="col">Fin</th>
+            <th scope="col">Intervenant</th>
+            <th scope="col">Quantité début</th>
+            <th scope="col">Quantité fin</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+        {% if historiques|length < 1 %}
+            <tr class="row-historique">
+                <td colspan="8">Aucun historique disponible</td>
+            </tr>
+        {% else %}
+            {% for historique in historiques %}
+                <tr class="row-historique">
+                    <td>{{ historique.getIdOf.id }}</td>
+                    <td>{{ historique.getDateDebut|date("d/m/Y H:i") }}</td>
+                    <td>{{ historique.getDateFin|date("d/m/Y H:i") }}</td>
+                    <td>{{ historique.getIdIntervenant.nom }} {{ historique.getIdIntervenant.prenom }}</td>
+                    <td>{{ historique.getQuantiteDebut}}</td>
+                    <td>{{ historique.getQuantiteFin}}</td>
+                    <td>
+                        <button class="btn btn-primary edite-historique" data-id="{{ historique.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-historique" data-id="{{ historique.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr id="tr-valide">
+            <td colspan="8">
+                <button class="btn btn-primary" id="cree-historique">Créer un nouvel historique de production</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_historique_production/info.script.js')}}"></script>
+<script>
+    let route_get_historique = '{{ path("cree_historique") }}';
+    let route_get_edite_historique = '{{ path("edite_historique") }}';
+    let route_efface_historique = '{{ path("efface_historique") }}';
+</script>

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}titre index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/index.style.css') }}">
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container-fluid" id="container-principal">
+        <div class="row" id="ligne-en-tete">
+            <div class="col-md-3 col-4" id="texte-categories">Catégories</div>
+            <div class="col-md-9 col-8" id="titre-categorie-en-cours"></div>
+        </div>
+
+        <div class="row" id="ligne-corps">
+            <div class="col-md-3 col-4" id="menu-categories">
+                <ul class = "list-group">
+                {% for categorie in categories %}
+                    <li class="list-group-item custom-group-item" id="{{categorie.nom}}">{{ categorie.nom }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-9 col-8">
+                <div class="row h-100" id="bloc-infos">Veuillez choisir un élèment du menu</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/index.script.js') }}"></script>
+    <script>
+        let route_info_client = '{{ path("client_infos") }}';
+        let route_info_qualite = '{{ path("qualite_infos") }}';
+        let route_info_historique = '{{ path("historique_infos") }}';
+        let route_info_intervenant = '{{ path("intervenant_infos") }}';
+        let route_info_intervention = '{{ path("intervention_infos") }}';
+        let route_info_machine = '{{ path("machine_infos") }}';
+        let route_info_matiere = '{{ path("matiere_infos") }}';
+        let route_info_of = '{{ path("of_infos") }}';
+        let route_info_produit = '{{ path("produit_infos") }}';
+    </script>
+{% endblock %}

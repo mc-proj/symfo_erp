@@ -2,18 +2,42 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+        <meta name="description" content="Une version améliorée de mini ERP">
+	    <meta name="keywords" content="erpv2, erp_v2, Erpv2, Erp_v2, ERPV2, ERP_V2">
+	    <meta name="author" content="mcproj.fr">
+	    <meta name="og:title" property="og:title" content="Mini ERP V2, une version améliorée de Mini ERP">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="robots" content= "index,follow">
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {# Lien CDN Bootstrap #}
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+            {# Lien Font Awesome #}
+                <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+            {# image favicon #}
+                <link rel="shortcut icon" type="image/png" href="{{ asset('images/gear.jpg') }}">
+            {# Style toastr #}
+                <link href="{{ asset('toastr/toastr.css') }}" rel="stylesheet"/>
+            {# Lien vers notre feuille de style globale #}
+                <link rel="stylesheet" href="{{ asset('css/base.style.css') }}">
         {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div id="loader"></div>
+        {% endblock %}
     </body>
+
+    {% block javascripts %}
+    {# Liens CDN Bootstrap #}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    {# cdn JQuery #}
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js">
+    {# Lien toastr #}
+        <script src="{{ asset('toastr/toastr.js') }}"></script>
+    {# Lien vers script de la page #}
+        <script src="{{ asset('js/base.script.js') }}"></script>
+    {% endblock %}
 </html>

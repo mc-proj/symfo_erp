@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_intervenant/form_edition.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-edition-intervenant'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-edition-intervenant" formnovalidate>Modifier un intervenant</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_intervenant/form_edition.script.js')}}"></script>
+<script>
+  let route_post_edite_intervenant = '{{ path("edite_intervenant") }}';
+</script>

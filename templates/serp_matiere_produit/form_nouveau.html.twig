@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_matiere_produit/form_nouveau.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-cree-matiere-produit'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-cree-matiere-produit" formnovalidate>Lier nouvelle matiere</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_matiere_produit/form_nouveau.script.js')}}"></script>
+<script>
+  let route_post_matiere_produit = '{{ path("lie_nouvelle_matiere") }}';
+</script>

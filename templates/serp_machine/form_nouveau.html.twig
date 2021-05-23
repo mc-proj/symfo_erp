@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_machine/form_nouveau.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-cree-machine'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-cree-machine" formnovalidate>Créer nouvelle machine</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_machine/form_nouveau.script.js')}}"></script>
+<script>
+  let route_post_machine = '{{ path("cree_machine") }}';
+</script>

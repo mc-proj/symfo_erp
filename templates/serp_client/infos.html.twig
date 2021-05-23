@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="{{ asset('css/serp_client/info.style.css') }}">
+
+{# class="modal modal-xl fade" #}
+<div class="modal fade" id="modale-formulaire-client" tabindex="-1" aria-labelledby="titre-modale-client" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titre-modale-client">{# titre modale #}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="corps-modale-client">
+          {# corps modale #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="align-middle">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Code Postal</th>
+            <th scope="col">Pays</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody id="body-info" class="align-middle">
+        {% if clients|length < 1 %}
+            <tr class="row-client">
+                <td colspan="7">Aucun client disponible</td>
+            </tr>
+        {% else %}
+            {% for client in clients %}
+                <tr class="row-client">
+                    <td>{{ client.nom }}</td>
+                    <td>{{ client.adresse }}</td>
+                    <td>{{ client.ville }}</td>
+                    <td>{{ client.codePostal }}</td>
+                    <td>{{ client.pays }}</td>
+                    <td>
+                        <button class="btn btn-primary edite-client" data-id="{{ client.id }}">Editer</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger efface-client" data-id="{{ client.id }}">Effacer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr id="tr-valide">
+            <td colspan="7">
+                <button class="btn btn-primary" id="cree-client">Créer un nouveau client</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_client/info.script.js')}}"></script>
+    <script>
+        let route_get_client = '{{ path("cree_client") }}';
+        let route_get_edite_client = '{{ path("edite_client") }}';
+        let route_efface_client = '{{ path("efface_client") }}';
+    </script>

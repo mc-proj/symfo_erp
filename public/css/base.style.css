@@ -1,0 +1,16 @@
+#loader {
+    position: fixed;
+    z-index: 9999;
+    background: url("../../images/loader.svg") 50% 50% no-repeat;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.5);
+    display: none;
+}
+
+.table {
+    min-height: 40px;
+    height: 40px;
+}

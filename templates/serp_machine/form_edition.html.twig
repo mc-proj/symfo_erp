@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{asset('css/serp_machine/form_edition.style.css')}}">
+
+<div class="container form-control">
+  {{ form_start(form, {name: 'form-edition-machine'}) }}
+    {{ form_widget(form) }}
+    <button type="button" class="btn btn-success" id="btn-edition-machine" formnovalidate>Modifier une machine</button>
+  {{ form_end(form) }}
+</div>
+
+<script src="{{ asset('toastr/toastr.js') }}"></script>
+<script src="{{asset('js/serp_machine/form_edition.script.js')}}"></script>
+<script>
+  let route_post_edite_machine = '{{ path("edite_machine") }}';
+</script>
